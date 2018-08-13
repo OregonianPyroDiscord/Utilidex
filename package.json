@@ -1,0 +1,26 @@
+{
+  "name": "utilidex-sas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon index.js --ignore commands/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "discord.js": "^11.3.2",
+    "dotenv": "^6.0.0",
+    "enmap": "^2.7.2",
+    "enmap-level": "^2.1.0",
+    "insult-compliment": "^1.1.4",
+    "klaw": "^3.0.0",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
+    "ms": "^2.1.1",
+    "path": "^0.12.7"
+  }
+}
