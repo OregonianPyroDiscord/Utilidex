@@ -4,23 +4,23 @@ const guild_disabled = require('../functions/errors/cmd_guild.js');
 const global_disabled = require('../functions/errors/cmd_global.js');
 const dev_only = require('../functions/errors/dev_only.js');
 const cmd_error = require('../functions/errors/cmd_error.js');
-
+const automod = require('../automod/automod.js');
+const spam = automod.spam;
 class Message {
     constructor(client) {
         this.client = client;
     };
 
     async run(message) {
-        if (!this.client.history.has(message.author.id)) {
-            this.client.history.set(message.author.id, []);
-            console.log(this.client.chalk.green(`Successfully set moderation array for '${message.author.tag}' successfully.`));
-        };
+        if (message.author.bot) return;
+        if (message.channel.type !== 'text') return;
         message.guild.settings = this.client.settings.get(message.guild.id);
         message.cases = this.client.cases.get(message.guild.id);
         const { prefix, disabled_commands, ignored, automod } = this.client.settings.get(message.guild.id);
-        if (message.author.bot) return;
-        if (message.channel.type !== 'text') return;
         //automod
+        await spam(this.client, message);
+        // await automod.bad_words(this.client, message);
+        // await automod.invite_links(this.client, message);
         if (message.content.indexOf(prefix) !== 0) return;
         const args = message.content.split(' ').slice(1);
         let command = message.content.split(' ')[0];
