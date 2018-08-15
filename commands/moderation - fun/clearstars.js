@@ -27,7 +27,7 @@ class ClearStars extends Command {
         if (member.highestRole.calculatedPosition >= message.member.highestRole.calculatedPosition) {
             return message.delete(), message.channel.send(`${this.client.emotes.x} You cannot clear the stars for a user that has a higher or equal role than you.`);
         };
-        const reason = args.slice(1).join(' ').length > 1 ? args.slice(1).join(' ').length > 1 : 'N/A';
+        const reason = args.slice(1).join(' ').length > 1 ? args.slice(1).join(' ') : 'N/A';
         if (!this.client.stars.has(member.user.id) || this.client.stars.get(member.user.id).length < 1) {
             const embed = new RichEmbed()
                 .setAuthor(member.user.username, member.user.displayAvatarURL)
